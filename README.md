@@ -13,3 +13,11 @@ This models has 3 branches.
 
 For most purposes the 'master' branch is considered stable. In other words, if you check out the master branch you can expect that it builds correctly, passes all tests and you should be able to work with the end application.
 
+### Feature branches
+All development is done in dedicated (relatively short lived) feature branches. A feature branch branches off from master, and once development is finished and all the integration criteria have been met, it is merged back to the master branch.
+
+A feature branch is typically called feature/ticket_description, where ticket is a reference to the corresponding ticket in the project issue tracker (if applicable), and description is a very short description (up to five words or so) of the purpose of the branch.
+
+Example: feature/triage-filter-block
+
+### Release branches
