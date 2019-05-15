@@ -1,7 +1,7 @@
 # Myosotis Git Strategy
 
 Git strategy used by Myosotis ICT B.v.
-A summary of the current git strategy used at Myosotis for its software projects. Based upon the GitFlow and Stable Mainline (Marcus Geelnard) methods.
+A summary of the current git strategy used at Myosotis for its software projects. Based upon the GitFlow and Stable Mainline (Marcus Geelnard) methods. http://www.bitsnbites.eu/a-stable-mainline-branching-model-for-git/
 
 ## Structure
 
