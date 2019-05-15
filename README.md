@@ -63,4 +63,4 @@ If the fix is too complex to implement properly in time for the release (e.g. if
 When doing so, it is important to create a ticket for fixing the bug properly on master, and preferably start working on it right away.
 
 ### Patch release
-A patch release is created from an existing release branch. For instance, if v1.2.0 needs a critical patch, the patch is applied on top of the release/v1.2 branch, and then the regular release stabilization process is performed (except that tags now use the name of the new version number, for instance v1.2.1-rc1).
+A patch release is created from an existing release branch. For instance, if v1.2.0 needs a critical patch, the patch is applied on top of the release/v1.2 branch, and then the regular release stabilization process is performed (except that tags now use the name of the new version number, for instance v1.2.1-rc1)...
