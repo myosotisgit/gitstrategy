@@ -1,3 +1,0 @@
-<?php
-// Feature 2
-?>
