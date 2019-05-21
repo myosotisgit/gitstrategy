@@ -75,8 +75,9 @@ Note that in most cases the remote name is origin.
 ## Delete Local Branch
 To delete the local branch use one of the following:
 
-`git branch -d branch_name
-`git branch -D branch_name
+`git branch -d branch_name`
+
+`git branch -D branch_name`
 
 Note: The -d option is an alias for --delete, which only deletes the branch if it has already been fully merged in its upstream branch. You could also use -D, which is an alias for --delete --force, which deletes the branch "irrespective of its merged status." [Source: man git-branch]
 
@@ -84,9 +85,11 @@ Note: The -d option is an alias for --delete, which only deletes the branch if i
 As of Git v1.7.0, you can delete a remote branch using
 
 `git push <remote_name> --delete <branch_name>`
+
 which might be easier to remember than
 
 `git push <remote_name> :<branch_name>`
+
 which was added in Git v1.5.0 "to delete a remote branch or a tag."
 
 Starting on Git v2.8.0 you can also use git push with the -d option as an alias for --delete.
