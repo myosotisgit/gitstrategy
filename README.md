@@ -68,9 +68,9 @@ A patch release is created from an existing release branch. For instance, if v1.
 # Git Cheat Sheet
 
 ## Summary - Deleting Branches (local/remote) 
-`git push --delete <remote_name> <branch_name>`
+Remote: `git push --delete <remote_name> <branch_name>`
 
-`git branch -d <branch_name>`
+Local: `git branch -d <branch_name>`
 
 Note that in most cases the remote name is origin.
 
