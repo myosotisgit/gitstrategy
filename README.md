@@ -67,6 +67,34 @@ A patch release is created from an existing release branch. For instance, if v1.
 
 # Git Cheat Sheet
 
+# Setting up Clone / Mirror repos
+* Github duplicating repos: https://help.github.com/en/articles/duplicating-a-repository
+
+As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository.
+
+## 1. Create a bare mirrored clone of the repository.
+
+`git clone --mirror <url to git repo.git>`
+
+This will clone an existing git repo into a **bare** local repository that is identical to the upstream repo
+
+## 2. Set the push location to your mirror.
+
+`cd repository-to-mirror.git`
+
+`$ git remote set-url --push origin https://github.com/exampleuser/mirrored`
+
+ Setting the URL for pushes simplifies pushing to your mirror. To update your mirror, fetch updates and push.
+ 
+## 3. Get latest changes from origin (remote repo)
+
+`git fetch -p origin`
+
+`git push --mirror`
+-- This will push to ALL remote branches. So WATCH OUT when you have production servers defined!
+
+
+# Deleting Branches
 ## Summary - Deleting Branches (local/remote) 
 Remote: `git push --delete <remote_name> <branch_name>`
 
