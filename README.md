@@ -67,6 +67,8 @@ A patch release is created from an existing release branch. For instance, if v1.
 
 # Git Cheat Sheet
 
+* Markdown: https://guides.github.com/features/mastering-markdown/
+
 # Setting up Clone / Mirror repos
 * Github duplicating repos: https://help.github.com/en/articles/duplicating-a-repository
 
@@ -90,8 +92,77 @@ This will clone an existing git repo into a **bare** local repository that is id
 
 `git fetch -p origin`
 
-`git push --mirror`
--- This will push to ALL remote branches. So WATCH OUT when you have production servers defined!
+`git push --mirror`*
+
+> * *This will push to ALL remote branches. So WATCH OUT when you have production servers defined!*
+
+# Sync to other repositories (Staging to client/live system)
+To easily 'update' existing software trees (on client servers, live systems) you can use a cloned bare repository to push changes to these remote servers. For example:
+
+GitHub | Staging server | client server | webroot
+------------ | ------------- | ------------- | -------------
+[GitHub repo] --> | [Bare mirror clone] --> | [Bare clone] --> | [software tree]
+
+The [Bare Mirror clone] is updated with `git fetch`. The [Bare clone] is updated with `git push [Bare clone]`. And the software tree is updated automatically using the `hooks/post-receive` file (created inside the bare repo).
+
+
+## Create local bare repo (on client/live system)
+Create a folder for the git repo in /home/ggnetmin/repos/webraap.git and initialize the repo.
+
+`mkdir -p /home/ggnetmin/repos/webraap.git`
+
+`cd webraap.git`
+
+`git init --bare`
+
+
+## post-receive (on client/live system)
+To automate the synchronize we use a “hook” that comes with git. This hook will “fire” when it received a remote push from the development server. This hook will only synchronize the master branch and not other branches!
+
+
+`cd bare-clone`
+`vi hooks/post-receive`
+
+Add this code to post-receive. Make sure to change the paths to your situation!!
+This bash code will check if the remote push was for the “master” branch and only then will it synchronize to the htdocs folder. And the text between echo “” will be shown in the git output during the push command on the pushing server.
+
+
+`#!/bin/bash
+while read oldrev newrev ref
+do
+    if [[ $ref =~ .*/master$ ]];
+    then
+        echo "Master branch update request received from upstream "
+        echo "Deploying master to local folder"
+        git --work-tree=/var/www/webraap-prod.arkin.nl/html --git-dir=/home/wrprod/repos/webraap.git checkout -f
+        echo "Finished receiving Master branch."
+    else
+        echo "Update Request: $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
+    fi
+done
+`
+
+`chmod 755 post-receive`
+
+
+## Add remote and initialize (on development server) 
+The last step is to add the production git to development repo as a “remote server”. This can easily be done by using the built-in git command:
+
+`git remote add production ssh://demo@server_domain_or_IP:PORT/home/git.repo`
+
+For example:
+
+`git remote add **clientrepo** ssh://user@client.systen.com:22/home/clientaccount/repos/webraap.git`
+
+To initialize and copy the master branch to the new bare repo we push the branch
+
+`git push --set-upstream **clientrepo** master`
+
+After the initialize we can, from the development server, push the master like this.
+
+`git push **clientrepo** master`
+
+This will only work when you are in the original repo (/home/dev/repos/webraap.git)
 
 
 # Deleting Branches
