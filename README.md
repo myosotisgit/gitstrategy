@@ -97,6 +97,8 @@ This will clone an existing git repo into a **bare** local repository that is id
 > * *This will push to ALL remote branches. So WATCH OUT when you have production servers defined!*
 
 # Sync to other repositories (Staging to client/live system)
+* https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks#using-git-hooks-to-deploy-to-a-separate-production-server
+
 To easily 'update' existing software trees (on client servers, live systems) you can use a cloned bare repository to push changes to these remote servers. For example:
 
 GitHub | Staging server | client server | webroot
