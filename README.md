@@ -86,7 +86,7 @@ This will clone an existing git repo into a **bare** local repository that is id
 
 `$ git remote set-url --push origin https://github.com/exampleuser/mirrored`
 
- Setting the URL for pushes simplifies pushing to your mirror. To update your mirror, fetch updates and push.
+Setting the URL for pushes simplifies pushing to your mirror; to update your mirror, fetch updates and push. Only needed for development environments.
  
 ## 3. Get latest changes from origin (remote repo)
 
@@ -95,6 +95,10 @@ This will clone an existing git repo into a **bare** local repository that is id
 `git push --mirror`*
 
 > * *This will push to ALL remote branches. So WATCH OUT when you have production servers defined!*
+
+## 3.1 Update existing root folder
+
+`git --work-tree=/var/www/<wr root folder>/html --git-dir=<repo folder>/wr4.git checkout -f`
 
 # Sync to other repositories (Staging to client/live system)
 * https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks#using-git-hooks-to-deploy-to-a-separate-production-server
