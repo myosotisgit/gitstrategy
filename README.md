@@ -100,6 +100,57 @@ Setting the URL for pushes simplifies pushing to your mirror; to update your mir
 
 `git --work-tree=/var/www/<wr root folder>/html --git-dir=<repo folder>/wr4.git checkout -f`
 
+# Revert a Commit
+You can easily 'switch' to a previous commit by using
+
+`git checkout <commit hash>`
+
+And to remove a commit use
+
+`git revert <commit hash>`
+
+And afterwards switch back to the working branch: `git checkout <working branch`
+
+# Deleting Branches
+## Summary - Deleting Branches (local/remote) 
+Remote: `git push --delete <remote_name> <branch_name>`
+
+Local: `git branch -d <branch_name>`
+
+Note that in most cases the remote name is origin.
+
+## Delete Local Branch
+To delete the local branch use one of the following:
+
+`git branch -d branch_name`
+
+`git branch -D branch_name`
+
+Note: The -d option is an alias for --delete, only deletes the branch if fully merged. Use -D, which is an alias for --delete --force, which deletes the branch "irrespective of its merged status."
+
+## Delete Remote Branch
+As of Git v1.7.0, you can delete a remote branch using
+
+`git push <remote_name> --delete <branch_name>`
+
+which might be easier to remember than
+
+`git push <remote_name> :<branch_name>`
+
+which was added in Git v1.5.0 "to delete a remote branch or a tag."
+
+Starting on Git v2.8.0 you can also use git push with the -d option as an alias for --delete.
+Therefore, the version of Git you have installed will dictate whether you need to use the easier or harder syntax.
+
+## Remove "ghost" branches (cached locally)
+When a remote branch is removed from origin it might still exists on local machines. Use --prune to remove these 'ghosts' branches.
+
+`git fetch --all --prune`
+
+
+
+
+
 # Sync to other repositories (Staging to client/live system)
 * https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks#using-git-hooks-to-deploy-to-a-separate-production-server
 
@@ -169,43 +220,6 @@ After the initialize we can, from the development server, push the master like t
 `git push **clientrepo** master`
 
 This will only work when you are in the original repo (/home/dev/repos/webraap.git)
-
-
-# Deleting Branches
-## Summary - Deleting Branches (local/remote) 
-Remote: `git push --delete <remote_name> <branch_name>`
-
-Local: `git branch -d <branch_name>`
-
-Note that in most cases the remote name is origin.
-
-## Delete Local Branch
-To delete the local branch use one of the following:
-
-`git branch -d branch_name`
-
-`git branch -D branch_name`
-
-Note: The -d option is an alias for --delete, only deletes the branch if fully merged. Use -D, which is an alias for --delete --force, which deletes the branch "irrespective of its merged status."
-
-## Delete Remote Branch [Updated on 8-Sep-2017]
-As of Git v1.7.0, you can delete a remote branch using
-
-`git push <remote_name> --delete <branch_name>`
-
-which might be easier to remember than
-
-`git push <remote_name> :<branch_name>`
-
-which was added in Git v1.5.0 "to delete a remote branch or a tag."
-
-Starting on Git v2.8.0 you can also use git push with the -d option as an alias for --delete.
-Therefore, the version of Git you have installed will dictate whether you need to use the easier or harder syntax.
-
-## Remove "ghost" branches (cached locally)
-When a remote branch is removed from origin it might still exists on local machines. Use --prune to remove these 'ghosts' branches.
-
-`git fetch --all --prune`
 
 ### Ref
 * Git remove branches: https://stackoverflow.com/a/2003515
