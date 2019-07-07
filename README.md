@@ -98,7 +98,7 @@ Setting the URL for pushes simplifies pushing to your mirror; to update your mir
 
 ## 3.1 Update existing root folder
 
-`git --work-tree=/var/www/<wr root folder>/html --git-dir=<repo folder>/wr4.git checkout -f`
+`git --work-tree=/var/www/webrootfolder/html --git-dir=<repo folder>/repo.git checkout -f`
 
 # Revert a Commit
 You can easily 'switch' to a previous commit by using
@@ -164,11 +164,11 @@ The [Bare Mirror clone] is updated with `git fetch`. The [Bare clone] is updated
 
 
 ## Create local bare repo (on client/live system)
-Create a folder for the git repo in /home/ggnetmin/repos/webraap.git and initialize the repo.
+Create a folder for the git repo in /home/user/repos/repo.git and initialize the repo.
 
-`mkdir -p /home/ggnetmin/repos/webraap.git`
+`mkdir -p /home/user/repos/repo.git`
 
-`cd webraap.git`
+`cd repo.git`
 
 `git init --bare`
 
@@ -191,7 +191,7 @@ do
     then
         echo "Master branch update request received from upstream "
         echo "Deploying master to local folder"
-        git --work-tree=/var/www/webraap-prod.arkin.nl/html --git-dir=/home/wrprod/repos/webraap.git checkout -f
+        git --work-tree=/var/www/pathtowebroot/html --git-dir=/home/user/repos/repo.git checkout -f
         echo "Finished receiving Master branch."
     else
         echo "Update Request: $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
@@ -209,7 +209,7 @@ The last step is to add the production git to development repo as a “remote se
 
 For example:
 
-`git remote add **clientrepo** ssh://user@client.systen.com:22/home/clientaccount/repos/webraap.git`
+`git remote add **clientrepo** ssh://user@client.systen.com:22/home/clientaccount/repos/repo.git`
 
 To initialize and copy the master branch to the new bare repo we push the branch
 
@@ -219,7 +219,7 @@ After the initialize we can, from the development server, push the master like t
 
 `git push **clientrepo** master`
 
-This will only work when you are in the original repo (/home/dev/repos/webraap.git)
+This will only work when you are in the original repo (/home/user/repos/repo.git)
 
 ### Ref
 * Git remove branches: https://stackoverflow.com/a/2003515
