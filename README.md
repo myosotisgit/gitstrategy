@@ -181,31 +181,23 @@ To automate the synchronize we use a “hook” that comes with git. This hook w
 `vi hooks/post-receive`
 
 Add this code to post-receive. Make sure to change the paths to your situation!!
-This bash code will check if the remote push was for the “master” branch and only then will it synchronize to the htdocs folder. And the text between echo “” will be shown in the git output during the push command on the pushing server.
+This bash code will check if the remote push was for the “master” branch and only then will it synchronize to the htdocs folder. And the text between "echo" will be shown in the git output during the push command on the pushing server.
 
-
-`#!/bin/bash
+```php
+#!/bin/bash
 while read oldrev newrev ref
 do
-
     if [[ $ref =~ .*/master$ ]];
-    
     then
-    
         echo "Master branch update request received from upstream "
-        
         echo "Deploying master to local folder"
-        
         git --work-tree=/var/www/pathtowebroot/html --git-dir=/home/user/repos/repo.git checkout -f
-        
         echo "Finished receiving Master branch."
-        
     else
-    
         echo "Update Request: $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
-    
     fi   
-done`
+done
+```
 
 `chmod 755 post-receive`
 
