@@ -185,17 +185,29 @@ This bash code will check if the remote push was for the “master” branch and
 
 
 `#!/bin/bash
+
 while read oldrev newrev ref
+
 do
+
     if [[ $ref =~ .*/master$ ]];
+    
     then
+    
         echo "Master branch update request received from upstream "
+        
         echo "Deploying master to local folder"
+        
         git --work-tree=/var/www/pathtowebroot/html --git-dir=/home/user/repos/repo.git checkout -f
+        
         echo "Finished receiving Master branch."
+        
     else
+    
         echo "Update Request: $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
+    
     fi
+    
 done
 `
 
