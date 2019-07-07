@@ -185,9 +185,7 @@ This bash code will check if the remote push was for the “master” branch and
 
 
 `#!/bin/bash
-
 while read oldrev newrev ref
-
 do
 
     if [[ $ref =~ .*/master$ ]];
@@ -206,10 +204,8 @@ do
     
         echo "Update Request: $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
     
-    fi
-    
-done
-`
+    fi   
+done`
 
 `chmod 755 post-receive`
 
