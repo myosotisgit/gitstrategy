@@ -100,12 +100,15 @@ Setting the URL for pushes simplifies pushing to your mirror; to update your mir
 
 `git --work-tree=/var/www/webrootfolder/html --git-dir=<repo folder>/repo.git checkout -f`
 
-# Revert a Commit
-You can easily 'switch' to a previous commit by using
+# Preview a previous commit
+If, for some reason, a recent commit breaks something you can pinpoint the exact commit where it happened by running `git commit xxxxx`.
+Git will undo all the previous commits UPTO the commit specified (iow, HEAD will point to the commit specified). Once you have located the bug, checkout master again and fix it, or "revert" the commit(s).
 
 `git checkout <commit hash>`
 
-And to remove a commit use
+To view all commit hashes use `git log --oneline`. Dont forget to `git checkout master` when you are done!
+
+# Revert a Commit
 
 `git revert <commit hash>`
 
