@@ -78,7 +78,8 @@ As with a bare clone, a mirrored clone includes all remote branches and tags, bu
 
 `git clone --mirror <url to git repo.git>`
 
-This will clone an existing git repo into a **bare** local repository that is identical to the upstream repo
+This will clone an existing git repo into a **bare** local repository that is identical to the upstream repo.
+--> On servers behind a firewall you need to use the https link to the repository!
 
 ## 2. Set the push location to your mirror.
 
