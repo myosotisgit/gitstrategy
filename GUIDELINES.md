@@ -1,3 +1,8 @@
+# Coding standards & Guidelines
+
+## Links
+- Spatie : https://spatie.be/guidelines
+
 ## Prototypes
 No prototypes. Just make the app. Polish as you go. Don't depend on polish happening later.
 
